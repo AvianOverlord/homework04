@@ -28,16 +28,16 @@ var quizFinished = false;
 
 //Array of objects for the questions
 var questions = [
-    q1 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q2 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q3 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q4 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q5 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q6 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q7 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q8 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q9 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q10 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0}
+    q1 = {question: "Test question 1. A is correct.", answers: ["a", "b", "c", "d"], correct: 0}
+    //q2 = {question: "Test question 2. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q3 = {question: "Test question 3. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q4 = {question: "Test question 4. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q5 = {question: "Test question 5. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q6 = {question: "Test question 6. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q7 = {question: "Test question 7. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q8 = {question: "Test question 8. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q9 = {question: "Test question 9. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    //q10 = {question: "Test question 10. A is correct.", answers: ["a", "b", "c", "d"], correct: 0}
 ];
 
 //Event listeners
@@ -51,6 +51,7 @@ function startGame()
     titleScreen.classList.add("invisible");
     quizScreen.classList.remove("invisible");
     updateQuestion();
+    quizTimer();
 }
 
 function updateQuestion()
@@ -64,10 +65,10 @@ function updateQuestion()
     }
     var currentQuestion = questions[index];
     questionText.textContent = currentQuestion.question;
-    currentQuestion.querySelector(".one").textContent = currentQuestion.answers[0];
-    currentQuestion.querySelector(".two").textContent = currentQuestion.answers[1];
-    currentQuestion.querySelector(".three").textContent = currentQuestion.answers[2];
-    currentQuestion.querySelector(".four").textContent = currentQuestion.answers[3];
+    document.querySelector(".questionOne").textContent = currentQuestion.answers[0];
+    document.querySelector(".questionTwo").textContent = currentQuestion.answers[1];
+    document.querySelector(".questionThree").textContent = currentQuestion.answers[2];
+    document.querySelector(".questionFour").textContent = currentQuestion.answers[3];
 }
 
 function quizTimer()
