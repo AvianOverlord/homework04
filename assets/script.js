@@ -159,7 +159,8 @@ function submitInitials()
     for(var i=0; i<highScoreList.length; i++)
     {
         var newElement = document.createElement("li");
-        newElement.textContent = highScoreList[i].name + ": " + highScoreList.highScore;
+        console.log(highScoreList[i].highScore);
+        newElement.textContent = highScoreList[i].name + ": " + highScoreList[i].highScore;
         highScoreListDisplay.appendChild(newElement);
     }
 
