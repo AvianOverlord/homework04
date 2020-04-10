@@ -145,17 +145,21 @@ function submitInitials()
     }
     
     //This creates a new object with the player's initals and score, adds it to the highScoreList array, and then sorts the array by score, with the highest score being first.
-    var initalWithScore = {name: initals, score: score};
+    console.log(score);
+    var initalWithScore = {name: initals, highScore: score};
     highScoreList.push(initalWithScore);
-    highScoreList = highScoreList.sort(function(a,b){
-        return b-a;
-    });
+    if(highScoreList.length > 1)
+    {
+        highScoreList = highScoreList.sort(function(a,b){
+            return b.highScore-a.highScore;
+        });
+    }
 
     //Creates HTML elements and appends them as children to the score display
     for(var i=0; i<highScoreList.length; i++)
     {
         var newElement = document.createElement("li");
-        newElement.textContent = highScoreList[i].name + ": " + highScoreList.score;
+        newElement.textContent = highScoreList[i].name + ": " + highScoreList.highScore;
         highScoreListDisplay.appendChild(newElement);
     }
 
