@@ -14,11 +14,11 @@
     <div class="titleScreen">
         <h1 class="title">Welcome to my quiz about X.</h1>
         <h2 class="title">Press the button to start.</h2>
-        <button class="startButton"></button>
+        <button class="startButton btn btn-primary">Start</button>
     </div>    
 
     <!--Quiz screen elements. Style these more later-->
-    <div class="container quizScreen hidden">
+    <div class="container quizScreen invisible">
         <div class="row">
             <p class="col-3 scoreDisplay"></p>
             <p class="col-3 offset-6 timerDisplay"></p>
@@ -41,7 +41,7 @@
     </div>
 
     <!--Endgame screen elements.-->
-    <div class="endgameScreen hidden">
+    <div class="endgameScreen invisible">
         <h1>You scored: <span class="finalScoreDisplay"></span> points.</h1>
         <form>
             <label for="initalInput">Please enter your initals, to save your score.</label>
@@ -51,7 +51,7 @@
     </div>
 
     <!--High Score display-->
-    <div class="scoreScreen hidden">
+    <div class="scoreScreen invisible">
         <h1 class="title">High scores:</h1>
         <ol class="highScoreList"></ol>
     </div>

@@ -1,5 +1,5 @@
 //Vars for the html elements
-var titleScreen = document.querySelector(".mainScreen");
+var titleScreen = document.querySelector(".titleScreen");
 var quizScreen = document.querySelector(".quizScreen");
 var endgameScreen = document.querySelector(".endgameScreen");
 var scoreScreen = document.querySelector(".scoreScreen");
@@ -13,9 +13,9 @@ var answerContainer = document.querySelector(".answerContainer");
 
 var finalScoreDisplay = document.querySelector(".finalScoreDisplay");
 var initalField = document.querySelector("#initalField");
-var initalButton = document.querySelector("initalButton");
+var initalButton = document.querySelector(".initalButton");
 
-var highScoreList = document.querySelector("highScoreList");
+var highScoreListDisplay = document.querySelector("highScoreList");
 
 //Vars for the counters
 var totalTime = 500;
@@ -29,7 +29,15 @@ var quizFinished = false;
 //Array of objects for the questions
 var questions = [
     q1 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
-    q2 = {}
+    q2 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q3 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q4 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q5 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q6 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q7 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q8 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q9 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0},
+    q10 = {question: "Test question. A is correct.", answers: ["a", "b", "c", "d"], correct: 0}
 ];
 
 //Event listeners
@@ -39,8 +47,9 @@ initalButton.addEventListener("click", submitInitials);
 
 function startGame()
 {
-    titleScreen.classList.add("hidden");
-    quizScreen.classList.remove("hidden");
+    console.log("Button press registered");
+    titleScreen.classList.add("invisible");
+    quizScreen.classList.remove("invisible");
     updateQuestion();
 }
 
@@ -78,8 +87,9 @@ function quizTimer()
     },1000);
 }
 
-checkAnswer()
+function checkAnswer()
 {
+    event.preventDefault();
     var chosenAnswer = event.target;
     var answerIndex = parseInt(chosenAnswer.getAttribute("data-number"));
     if(questions[index].correct === answerIndex)
@@ -91,6 +101,7 @@ checkAnswer()
     {
         alert("Incorrect.");
         currentTime += 10;
+        timerDisplay.textContent = totalTime-currentTime;
     }
     index++;
     updateQuestion();
@@ -98,8 +109,8 @@ checkAnswer()
 
 function endQuiz()
 {
-    quizScreen.classList.add("hidden");
-    endgameScreen.classList.remove("hidden");
+    quizScreen.classList.add("invisible");
+    endgameScreen.classList.remove("invisible");
     if(quizFinished)
     {
         alert("You made it all the way through!");
@@ -113,5 +124,40 @@ function endQuiz()
 
 function submitInitials()
 {
-    //Figure this out tomarrow
+    //Get the initals before changing the screen
+    var initals = initalField.value;
+    if(initals === "")
+    {
+        alert("Please enter your initals.");
+        return;
+    }
+
+    //Display management
+    endgameScreen.classList.add("invisible");
+    scoreScreen.classList.remove("invisible");
+
+    //Retrieve the locally stored high score list
+    var highScoreList = JSON.parse(localStorage.getItem("highScoreList"));
+    if(highScoreList === null)
+    {
+        highScoreList = [];
+    }
+    
+    //This creates a new object with the player's initals and score, adds it to the highScoreList array, and then sorts the array by score, with the highest score being first.
+    var initalWithScore = {name: initals, score: score};
+    highScoreList.push(initalWithScore);
+    highScoreList = highScoreList.sort(function(a,b){
+        return b-a;
+    });
+
+    //Creates HTML elements and appends them as children to the score display
+    for(var i=0; i<highScoreList.length; i++)
+    {
+        var newElement = document.createElement("li");
+        newElement.textContent = highScoreList[i].name + ": " + highScoreList.score;
+        highScoreListDisplay.appendChild(newElement);
+    }
+
+    //Saves the new high score list to local storage
+    localStorage.setItem("highScoreList",JSON.stringify(highScoreList));
 }
