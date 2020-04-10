@@ -33,6 +33,8 @@ JS:
         -vars for all the needed elements
             -See above
         -vars for the total timer length and current duration remaining
+        -var for score
+        -var for index in the quiz
         -Store the quiz data in here
             -Array of objects
             -Represent the questions as objects. Vars are question, answer 1, answer 2, answer 3, answer 4, and correct answer.
@@ -53,10 +55,9 @@ JS:
         -If timer hits zero, call ending function, give parameter that records why the game ended
 
     -Quiz Manager function:
-        -for loop through the quiz questions array
-        -QUESTION: How to query check answer? and/or how to make a function wait for an event
-        -Add score (and update score display)
-        -if player gives the wrong answer, decrement timer.
+        -progress to the next question in the quiz questions array
+        -Use an external variable, so that every call of the function is essentially another execution of a for loop.
+        -Update the quiz interface and score display.
         -When the for loop terminates, call Game End
 
     -Check Answer function:
@@ -64,8 +65,9 @@ JS:
         -receives the question as a parameter
         -Uses target to see which button was pressed
         -uses findIndexOf to see if this answer is correct
-        -return boolean
-        -QUESTION: How to make this function talk to quiz manager?
+        -Add score
+        -if player gives the wrong answer, decrement timer.
+        -Increase questionCount by one, call QuizManager
 
     -Game End function:
         -Terminate the timer loop
