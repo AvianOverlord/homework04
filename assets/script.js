@@ -15,7 +15,7 @@ var finalScoreDisplay = document.querySelector(".finalScoreDisplay");
 var initalField = document.querySelector("#initalField");
 var initalButton = document.querySelector(".initalButton");
 
-var highScoreListDisplay = document.querySelector("highScoreList");
+var highScoreListDisplay = document.querySelector(".highScoreList");
 
 //Vars for the counters
 var totalTime = 500;
