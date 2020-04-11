@@ -1,3 +1,31 @@
+body
+{
+    background-color: navy;
+    color: white;
+}
+
 .invisible{
     display: none;
+}
+
+.titleScreen, .endgameScreen, .scoreScreen
+{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.quizScreen
+{
+    margin-top: 20px;
+}
+
+.startButton
+{
+    margin: 10px;
+}
+
+.answer
+{
+    margin: 10px;
+    text-align: center;
 }
