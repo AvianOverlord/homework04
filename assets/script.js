@@ -26,7 +26,7 @@ var index = 0;
 
 var quizFinished = false;
 
-//Array of objects for the questions
+//Array of objects for the questions. The correct answer is recorded as the index of the correct answer in the answers array.
 var questions = [
     q1 = {question: "Which British monarch was overthrown in favor of a republic?", answers: ["Charles I", "Charles II", "James I", "Edward VII"], correct: 0},
     q2 = {question: "The Maderistas fought to overthrow the dictator of Mexico, Profirio Diaz, under the very same slogan he had once used. What was it?", answers: ["Viva Mexico!", "Liberty and equality!", "Peace and bread!", "No reelection!"], correct: 3},
@@ -48,12 +48,14 @@ initalButton.addEventListener("click", submitInitials);
 function startGame()
 {
     console.log("Button press registered");
-    titleScreen.classList.add("invisible");
+    titleScreen.classList.add("invisible"); //The "invisible" tag is set in the CSS file to not be displayed. I use it to manage which screen is being displayed.
     quizScreen.classList.remove("invisible");
     updateQuestion();
     quizTimer();
 }
 
+//This function sets the various elements of the quiz screen to the current question, \
+//and ends the quiz if the player has answered all questions.
 function updateQuestion()
 {
     scoreDisplay.textContent = score;
@@ -72,6 +74,8 @@ function updateQuestion()
     document.querySelector(".questionFour").textContent = currentQuestion.answers[3];
 }
 
+//This is a fairly simple setInterval timer. CurrentTime is outside of it, because it needs to be accessed by the answer checking function.
+//The boolean "quizFinished" is used to end the timer if the player answers all questions, without triggering the code that would end the game twice
 function quizTimer()
 {
     currentTime = 0;
@@ -89,6 +93,7 @@ function quizTimer()
     },1000);
 }
 
+//Uses function delegation to see which answer was chosen, compares that answer slots data to the index of the correct answer
 function checkAnswer()
 {
     event.preventDefault();
@@ -113,6 +118,7 @@ function checkAnswer()
     updateQuestion();
 }
 
+//Sends an alert based on how the game ended. The HTML file uses ? as a placeholder, so the player doesn't see a blank space where their score will go
 function endQuiz()
 {
     quizScreen.classList.add("invisible");
