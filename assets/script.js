@@ -18,7 +18,7 @@ var initalButton = document.querySelector(".initalButton");
 var highScoreListDisplay = document.querySelector(".highScoreList");
 
 //Vars for the counters
-var totalTime = 120;
+var totalTime = 200;
 var currentTime = 0;
 
 var score = 0;
