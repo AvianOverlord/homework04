@@ -18,7 +18,7 @@ var initalButton = document.querySelector(".initalButton");
 var highScoreListDisplay = document.querySelector(".highScoreList");
 
 //Vars for the counters
-var totalTime = 500;
+var totalTime = 120;
 var currentTime = 0;
 
 var score = 0;
@@ -56,6 +56,7 @@ function startGame()
 
 function updateQuestion()
 {
+    scoreDisplay.textContent = score;
     if(index >= questions.length)
     {
         quizFinished = true;
